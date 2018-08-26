@@ -123,7 +123,23 @@ var BAMStore = declare( [ SeqFeatureStore, DeferredStatsMixin, DeferredFeaturesM
 
     // called by getFeatures from the DeferredFeaturesMixin
     _getFeatures: function( query, featCallback, endCallback, errorCallback ) {
-        this.bam.fetch( query.ref ? query.ref : this.refSeq.name, query.start, query.end, featCallback, endCallback, errorCallback );
+        const features = [];
+        const fun = (feat) => {
+            features.push(feat);
+        }
+        const end = () => {
+            features.sort((a, b) => {
+                const x = a.get('cigar').indexOf("N")==-1;
+                const y = b.get('cigar').indexOf("N")==-1;
+                if(x && y) return 0;
+                if(x && !y) return 1;
+                if(!x && y) return -1;
+                else return 0;
+            })
+            features.forEach(featCallback);
+            endCallback();
+        }
+        this.bam.fetch( query.ref ? query.ref : this.refSeq.name, query.start, query.end, fun, end, errorCallback );
     },
 
     saveStore: function() {
