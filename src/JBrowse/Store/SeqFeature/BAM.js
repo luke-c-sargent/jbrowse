@@ -138,7 +138,7 @@ return declare( [ SeqFeatureStore, DeferredStatsMixin, DeferredFeaturesMixin, Gl
         // estimation doesn't time out
         this.bam.hasDataForReferenceSequence(0)
             .then(() => this.bam.getHeader())
-            .then(() => {
+            .then((res) => {
                 this._deferred.features.resolve({success:true});
             })
             .then(() => this._estimateGlobalStats())
@@ -269,16 +269,19 @@ return declare( [ SeqFeatureStore, DeferredStatsMixin, DeferredFeaturesMixin, Gl
         this.bam.getRecordsForRange(seqName, query.start + 1, query.end)
             .then(records => {
                 for (let i = 0; i < records.length; i+= 1) {
-                    featCallback(this._bamRecordToFeature(records[i]))
+                    featCallback(new SimpleFeature({
+                        start: records[i].get('start'),
+                        end: records[i].get('end')
+                    }))
                 }
 
                 endCallback()
             })
             .catch(err => {
-                // map the BamSizeLimitError to JBrowse Errors.DataOverflow
-                if (err instanceof BamSizeLimitError) {
-                    err = new Errors.DataOverflow(err)
-                }
+                // // map the BamSizeLimitError to JBrowse Errors.DataOverflow
+                // if (err instanceof BamSizeLimitError) {
+                //     err = new Errors.DataOverflow(err)
+                // }
 
                 errorCallback(err)
             })
