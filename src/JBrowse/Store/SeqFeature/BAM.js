@@ -9,9 +9,9 @@ const BlobFilehandleWrapper = cjsRequire('../../Model/BlobFilehandleWrapper')
 
 class BamSlightlyLazyFeature {
 
-    _get_name() { return this.record.readName }
-    _get_start() { return this.record.alignmentStart-1 }
-    _get_end() { return this.record.alignmentStart+this.record.lengthOnRef-1 }
+    _get_name() { return this.record.get('name') }
+    _get_start() { return this.record.get('start') }
+    _get_end() { return this.record.get('end') }
     _get_type() { return 'match'}
     _get_mapping_quality() { return this.record.mappingQuality}
     _get_flags() { return `0x${this.record.flags.toString(16)}`}
@@ -49,7 +49,7 @@ class BamSlightlyLazyFeature {
     }
 
     id() {
-        return this.record.uniqueId + 1
+        return this.record.get('id')
     }
 
     get(field) {
@@ -84,18 +84,7 @@ define( [
             SimpleFeature,
         ) {
 
-return declare( [ SeqFeatureStore, DeferredStatsMixin, DeferredFeaturesMixin, GlobalStatsEstimationMixin ],
-
-/**
- * @lends JBrowse.Store.SeqFeature.CRAM
- */
-{
-    /**
-     * Data backend for reading feature data directly from a
-     * web-accessible CRAM file.
-     *
-     * @constructs
-     */
+return declare( [ SeqFeatureStore, DeferredStatsMixin, DeferredFeaturesMixin, GlobalStatsEstimationMixin ], {
     constructor: function( args ) {
 
         let dataBlob
@@ -269,10 +258,7 @@ return declare( [ SeqFeatureStore, DeferredStatsMixin, DeferredFeaturesMixin, Gl
         this.bam.getRecordsForRange(seqName, query.start + 1, query.end)
             .then(records => {
                 for (let i = 0; i < records.length; i+= 1) {
-                    featCallback(new SimpleFeature({
-                        start: records[i].get('start'),
-                        end: records[i].get('end')
-                    }))
+                    featCallback(this._bamRecordToFeature(records[i]))
                 }
 
                 endCallback()
