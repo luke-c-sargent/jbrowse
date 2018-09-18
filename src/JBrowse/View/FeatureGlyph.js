@@ -112,7 +112,7 @@ return declare( Component, {
 
     layoutFeature: function( viewArgs, layout, feature ) {
         var fRect = this._getFeatureRectangle( viewArgs, feature );
-
+        console.log(`layoutFeature: vA:${viewArgs} fR:${fRect} feat: ${feature}`)
         var scale = viewArgs.scale;
         var leftBase = viewArgs.leftBase;
         var startbp = fRect.l/scale + leftBase;

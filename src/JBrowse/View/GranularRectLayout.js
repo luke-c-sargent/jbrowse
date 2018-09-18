@@ -84,6 +84,7 @@ class LayoutRow {
     }
 
     addRect(rect, data) {
+        console.log(`earlier add? id:${id} l:${left} r:${right} h:${height}`)
         const left = rect.l
         const right = rect.r + this.padding // only padding on the right
 
@@ -327,6 +328,7 @@ declare(null, {
     },
 
     _addRectToBitmap(rect, data) {
+        console.log(`rect: ${rect}`)
         if (rect.top === null) return
 
         data = data || true
