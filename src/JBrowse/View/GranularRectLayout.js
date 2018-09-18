@@ -257,6 +257,7 @@ declare(null, {
     */
     addRect(id, left, right, height, data) {
         // if we have already laid it out, return its layout
+        console.log(`id:${id} l:${left} r:${right} h:${height}`)
         if (id in this.rectangles) {
             const storedRec = this.rectangles[id]
             if (storedRec.top === null) return null
