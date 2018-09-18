@@ -122,7 +122,7 @@ return declare( Component, {
               continue;
             }
             var t=typeof o[p];
-            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object:'+introspect(o[p],i+'  ') : o[p].toString()+''));
+            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
           }
           return r.join(i+'\n');
         }
