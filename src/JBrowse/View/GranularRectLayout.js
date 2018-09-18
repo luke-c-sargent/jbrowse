@@ -84,10 +84,9 @@ class LayoutRow {
     }
 
     addRect(rect, data) {
-        console.log(`earlier add? id:${id} l:${left} r:${right} h:${height}`)
         const left = rect.l
         const right = rect.r + this.padding // only padding on the right
-
+        console.log(`earlier add? pad:${this.padding} l:${left} r:${right}`);
         // initialize if necessary
         if (this.min === undefined) {
             this.initialize(left, right)
