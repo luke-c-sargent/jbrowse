@@ -112,7 +112,20 @@ return declare( Component, {
 
     layoutFeature: function( viewArgs, layout, feature ) {
         var fRect = this._getFeatureRectangle( viewArgs, feature );
-        console.log(`layoutFeature: vA:${viewArgs} fR:${fRect} feat: ${feature}`)
+        introspect: function (o,i) {
+          if(typeof i=='undefined')i='';
+          if(i.length>50)return '[MAX ITERATIONS]';
+          var r=[];
+          for (var p in o){
+            var t=typeof o[p];
+            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object:'+xinspect(o[p],i+'  ') : o[p]+''));
+          }
+          return r.join(i+'\n');
+        }
+        var va = introspect(viewArgs);
+        var fr = introspect(fRect);
+        var f = introspect(feature);
+        console.log(`layoutFeature: vA:${va} fR:${fr} feat: ${f}`);
         var scale = viewArgs.scale;
         var leftBase = viewArgs.leftBase;
         var startbp = fRect.l/scale + leftBase;
