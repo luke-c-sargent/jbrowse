@@ -114,10 +114,13 @@ return declare( Component, {
         var fRect = this._getFeatureRectangle( viewArgs, feature );
         function introspect(o,i) {
           if(typeof i=='undefined')i='';
-          if(i.length>50)return '[MAX ITERATIONS]';
+          if(i.length>20)return '[MAX ITERATIONS]';
           var r=[];
           for (var p in o){
-            if(typeof o[p]=='undefined')continue;
+            if(typeof o[p]=='undefined'){
+              i = i+'  ';
+              continue;
+            }
             var t=typeof o[p];
             r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object:'+introspect(o[p],i+'  ') : o[p].toString()+''));
           }
