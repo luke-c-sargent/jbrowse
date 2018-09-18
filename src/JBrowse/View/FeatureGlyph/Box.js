@@ -84,7 +84,8 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
         }
         var block = viewArgs.block;
         //var bdbg = introspect(block);
-        var fdbg = introspect(feature);
+        //var fdbg = introspect(feature);
+        var ddbg = introspect(feature.data);
         console.log(`featEnd-${feature.get('end')} featBegin-${feature.get('start')}`);
         var fRect = {
             l: block.bpToX( feature.get('start') ),
@@ -92,7 +93,7 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
             viewInfo: viewArgs,
             f: feature,
             glyph: this,
-            dbg: fdbg
+            dbg: ddbg
         };
 
         fRect.w = block.bpToX( feature.get('end') ) - fRect.l;
