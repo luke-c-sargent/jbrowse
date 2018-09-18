@@ -75,6 +75,7 @@ class LayoutRow {
 
     initialize(left,right) {
         // NOTE: this.min, this.max, and this.offset are interbase coordinates
+        console.log(`init: r-${right} l-${left}`)
         const rectWidth = right - left
         this.offset = left - rectWidth
         this.min = left
