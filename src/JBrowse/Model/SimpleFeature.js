@@ -19,8 +19,24 @@ var SimpleFeature = Util.fastDeclare({
      * which will be inflated to more instances of this class.
      */
     constructor: function( args ) {
+        function introspect(o,i) {
+          if(typeof i=='undefined')i='';
+          if(i.length>20)return '[MAX ITERATIONS]';
+          var r=[];
+          for (var p in o){
+            if(typeof o[p]=='undefined'){
+              i = i+'  ';
+              continue;
+            }
+            var t=typeof o[p];
+            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
+          }
+          return r.join('\n');
+        }
+        console.log(`argles: ${introspect(args)}`);
         args = args || {};
         this.data = args.data || {};
+        console.log(`data: ${this.data}`);
         this._parent = args.parent;
         this._uniqueID = args.id || this.data.uniqueID || (
             this._parent ? this._parent.id()+'_'+(counter++) : 'SimpleFeature_'+(counter++)
