@@ -124,7 +124,7 @@ return declare( Component, {
             var t=typeof o[p];
             r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
           }
-          return r.join(i+'\n');
+          return r.join('\n');
         }
         var va = introspect(viewArgs);
         var fr = introspect(fRect);
