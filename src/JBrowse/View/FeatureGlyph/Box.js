@@ -84,6 +84,7 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
         }
         var block = viewArgs.block;
         var bdbg = introspect(block);
+        console.log(`featEnd-${feature.get('end')} featBegin-${feature.get('start')}`);
         var fRect = {
             l: block.bpToX( feature.get('start') ),
             h: this._getFeatureHeight(viewArgs, feature),
