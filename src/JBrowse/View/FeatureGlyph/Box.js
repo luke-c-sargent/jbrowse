@@ -67,6 +67,7 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
     },
 
     _getFeatureRectangle: function( viewArgs, feature ) {
+        console.log("_getFeat in Box.js");
         var block = viewArgs.block;
         var fRect = {
             l: block.bpToX( feature.get('start') ),
