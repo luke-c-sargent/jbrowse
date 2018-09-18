@@ -143,10 +143,10 @@ return declare( Component, {
           }
           return r.join('\n');
         }
-        var va = introspect(viewArgs);
-        var fr = introspect(fRect);
-        var f = introspect(feature);
-        console.log(`layoutFeature: \nvA:${va}\nfR:${fr}\nfeat: ${f}\n`);
+        //var va = introspect(viewArgs);
+        //var fr = introspect(fRect);
+        //var f = introspect(feature);
+        //console.log(`layoutFeature: \nvA:${va}\nfR:${fr}\nfeat: ${f}\n`);
         console.log(`scale: ${viewArgs.scale}\nleftbase: ${viewArgs.leftBase}\nfRect.l: ${fRect.l}\nfRect.w: ${fRect.w}\n`)
         var frectdebug = introspect(fRect)
         var scale = viewArgs.scale;
