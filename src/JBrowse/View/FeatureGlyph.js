@@ -80,7 +80,23 @@ return declare( Component, {
      * Get the dimensions of the rendered feature in pixels.
      */
     _getFeatureRectangle: function( viewInfo, feature ) {
+        function introspect(o,i) {
+          if(typeof i=='undefined')i='';
+          if(i.length>20)return '[MAX ITERATIONS]';
+          var r=[];
+          for (var p in o){
+            if(typeof o[p]=='undefined'){
+              i = i+'  ';
+              continue;
+            }
+            var t=typeof o[p];
+            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
+          }
+          return r.join('\n');
+        }
         var block = viewInfo.block;
+        var debuggery = introspect(block);
+        console.log(`block: ${debuggery}\n`);
         var fRect = {
             l: block.bpToX( feature.get('start') ),
             h: this._getFeatureHeight( viewInfo, feature ),
@@ -131,6 +147,7 @@ return declare( Component, {
         var f = introspect(feature);
         console.log(`layoutFeature: \nvA:${va}\nfR:${fr}\nfeat: ${f}\n`);
         console.log(`scale: ${viewArgs.scale}\nleftbase: ${viewArgs.leftBase}\nfRect.l: ${fRect.l}\nfRect.w: ${fRect.w}\n`)
+        var frectdebug = introspect(fRect)
         var scale = viewArgs.scale;
         var leftBase = viewArgs.leftBase;
         var startbp = fRect.l/scale + leftBase;
