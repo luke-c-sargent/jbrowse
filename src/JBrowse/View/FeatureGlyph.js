@@ -117,6 +117,7 @@ return declare( Component, {
           if(i.length>50)return '[MAX ITERATIONS]';
           var r=[];
           for (var p in o){
+            if(typeof o[p]=='undefined')continue;
             var t=typeof o[p];
             r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object:'+introspect(o[p],i+'  ') : o[p].toString()+''));
           }
