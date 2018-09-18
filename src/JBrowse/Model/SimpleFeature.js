@@ -36,7 +36,7 @@ var SimpleFeature = Util.fastDeclare({
         console.log(`argles: ${introspect(args)}`);
         args = args || {};
         this.data = args.data || {};
-        console.log(`data: ${this.data}`);
+        console.log(`data: ${introspect(this.data)}`);
         this._parent = args.parent;
         this._uniqueID = args.id || this.data.uniqueID || (
             this._parent ? this._parent.id()+'_'+(counter++) : 'SimpleFeature_'+(counter++)
