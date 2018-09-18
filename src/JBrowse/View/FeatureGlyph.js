@@ -129,7 +129,8 @@ return declare( Component, {
         var va = introspect(viewArgs);
         var fr = introspect(fRect);
         var f = introspect(feature);
-        console.log(`layoutFeature: vA:${va} fR:${fr} feat: ${f}`);
+        console.log(`layoutFeature: \nvA:${va}\nfR:${fr}\nfeat: ${f}\n`);
+        console.log(`scale: ${viewArgs.scale}\nleftbase: ${viewArgs.leftBase}\nfRect.l: ${fRect.l}\nfRect.w: ${fRect.w}\n`)
         var scale = viewArgs.scale;
         var leftBase = viewArgs.leftBase;
         var startbp = fRect.l/scale + leftBase;
