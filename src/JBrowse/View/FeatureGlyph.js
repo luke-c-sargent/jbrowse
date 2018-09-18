@@ -112,7 +112,7 @@ return declare( Component, {
 
     layoutFeature: function( viewArgs, layout, feature ) {
         var fRect = this._getFeatureRectangle( viewArgs, feature );
-        introspect: function(o,i) {
+        function introspect(o,i) {
           if(typeof i=='undefined')i='';
           if(i.length>50)return '[MAX ITERATIONS]';
           var r=[];
