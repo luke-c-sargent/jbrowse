@@ -68,13 +68,29 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
 
     _getFeatureRectangle: function( viewArgs, feature ) {
         console.log("_getFeat in Box.js");
+        function introspect(o,i) {
+          if(typeof i=='undefined')i='';
+          if(i.length>20)return '[MAX ITERATIONS]';
+          var r=[];
+          for (var p in o){
+            if(typeof o[p]=='undefined'){
+              i = i+'  ';
+              continue;
+            }
+            var t=typeof o[p];
+            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
+          }
+          return r.join('\n');
+        }
         var block = viewArgs.block;
+        var bdbg = introspect(block);
         var fRect = {
             l: block.bpToX( feature.get('start') ),
             h: this._getFeatureHeight(viewArgs, feature),
             viewInfo: viewArgs,
             f: feature,
-            glyph: this
+            glyph: this,
+            dbg: bdbg
         };
 
         fRect.w = block.bpToX( feature.get('end') ) - fRect.l;

@@ -80,7 +80,6 @@ return declare( Component, {
      * Get the dimensions of the rendered feature in pixels.
      */
     _getFeatureRectangle: function( viewInfo, feature ) {
-        debugger;
         console.log("getting feature rectangle");
         function introspect(o,i) {
           if(typeof i=='undefined')i='';
