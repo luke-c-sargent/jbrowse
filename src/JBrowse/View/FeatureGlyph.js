@@ -103,7 +103,8 @@ return declare( Component, {
             h: this._getFeatureHeight( viewInfo, feature ),
             viewInfo: viewInfo,
             f: feature,
-            glyph: this
+            glyph: this,
+            dbg: debuggery
         };
 
         fRect.w = block.bpToX( feature.get('end') ) - fRect.l;
@@ -129,6 +130,7 @@ return declare( Component, {
 
     layoutFeature: function( viewArgs, layout, feature ) {
         var fRect = this._getFeatureRectangle( viewArgs, feature );
+        console.log(`DBG ${fRect.dbg}\n`);
         function introspect(o,i) {
           if(typeof i=='undefined')i='';
           if(i.length>20)return '[MAX ITERATIONS]';
