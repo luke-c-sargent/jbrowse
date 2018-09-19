@@ -61,7 +61,7 @@ var SimpleFeature = Util.fastDeclare({
      * 'start' and 'end', but everything else is optional.
      */
     get: function(name) {
-        console.log(`getting ${name},,,,`)
+        //console.log(`getting ${name},,,,`)
         return this.data[ name.toLowerCase() ];
     },
 
