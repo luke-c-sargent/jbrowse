@@ -597,7 +597,21 @@ return declare(
                     // to add a rendering of
                     // this feature to the
                     // layout
-                    console.log(`CF: arg: ${args} lay: ${layout} feat: ${feature} gl: ${glyph}`);
+                    function introspect(o,i) {
+                      if(typeof i=='undefined')i='';
+                      if(i.length>20)return '[MAX ITERATIONS]';
+                      var r=[];
+                      for (var p in o){
+                        if(typeof o[p]=='undefined'){
+                          i = i+'  ';
+                          continue;
+                        }
+                        var t=typeof o[p];
+                        r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
+                      }
+                      return r.join('\n');
+                    }
+                    console.log(`CF: arg: ${introspect(args)} lay: ${introspect(layout)} feat: ${introspect(feature)} gl: ${glyph}`);
                     var fRect = glyph.layoutFeature(
                         args,
                         layout,
