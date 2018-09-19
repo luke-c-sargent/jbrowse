@@ -597,6 +597,7 @@ return declare(
                     // to add a rendering of
                     // this feature to the
                     // layout
+                    console.log(`CF: arg: ${args} lay: ${layout} feat: ${feature} gl: ${glyph}`);
                     var fRect = glyph.layoutFeature(
                         args,
                         layout,
