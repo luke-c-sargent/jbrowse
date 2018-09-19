@@ -132,8 +132,8 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
 
     layoutFeature: function( viewArgs, layout, feature ) {
         function introspect(o,i) {
-          if(typeof o=='undefined'){
-            return "undefinitively defined";
+          if(typeof o===null || typeof o!=='object'){
+            return o;
           }
           if(typeof i=='undefined')i='';
           if(i.length>20)return '[MAX ITERATIONS]';
@@ -148,9 +148,9 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
           }
           return r.join('\n');
         }
+        console.log(`lF: inh: ${introspect(this.inherited( arguments ))} arg? ${introspect(arguments)}`);
+        console.log(``);
         var rect = this.inherited( arguments );
-        console.log(`layoutFeature: ${rect}`);
-        console.log(`lF-intro: ${introspect(rect)}`)
         if( ! rect ) return rect;
 
         // need to set the top of the inner rect
