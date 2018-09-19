@@ -131,7 +131,26 @@ return declare([ FeatureGlyph, FeatureLabelMixin], {
     },
 
     layoutFeature: function( viewArgs, layout, feature ) {
+        function introspect(o,i) {
+          if(typeof o=='undefined'){
+            return "undefinitively defined";
+          }
+          if(typeof i=='undefined')i='';
+          if(i.length>20)return '[MAX ITERATIONS]';
+          var r=[];
+          for (var p in o){
+            if(typeof o[p]=='undefined'){
+              i = i+'  ';
+              continue;
+            }
+            var t=typeof o[p];
+            r.push(i+'"'+p+'" ('+t+') => '+(t=='object' ? 'object' : o[p].toString()+''));
+          }
+          return r.join('\n');
+        }
         var rect = this.inherited( arguments );
+        console.log(`layoutFeature: ${rect}`);
+        console.log(`lF-intro: ${introspect(rect)}`)
         if( ! rect ) return rect;
 
         // need to set the top of the inner rect
