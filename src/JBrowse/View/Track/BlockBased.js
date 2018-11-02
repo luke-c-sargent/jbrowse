@@ -480,6 +480,7 @@ return declare( [Component,DetailsMixin,FeatureFiltererMixin,Destroyable],
     },
 
     _renderErrorMessage: function( message, parent ) {
+        console.trace();
         return domConstruct.create(
             'div', {
                 className: 'error',
