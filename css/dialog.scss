@@ -255,3 +255,11 @@ a.dialog-new-window {
         margin: 0
     }
 }
+
+.detail .value.seq,
+.detail .value.subject,
+.detail .value.query,
+ .detail .value.sequence {
+    word-wrap: break-word;
+    width: 45em;
+}
