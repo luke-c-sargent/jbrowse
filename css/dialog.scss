@@ -152,7 +152,8 @@ a.dialog-new-window {
     text-align: right;
 }
 .feature-detail .fastaView textarea {
-    padding: 1em 1.5em;
+    padding: 1.1em;
+    padding-bottom: 0px;
     margin: 0;
     border: none;
 }
@@ -229,8 +230,13 @@ a.dialog-new-window {
 
 .detail .field_container {
     margin-left: 1em;
-    margin-bottom: 2px;
+//  margin-bottom: 2px;
 }
+
+.field_container {
+  margin: 0px;
+}
+
 .detail hr {
     margin: 0.8em 4em 0.5em 0.7em;
 }
