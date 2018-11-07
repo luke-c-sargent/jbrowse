@@ -171,7 +171,7 @@ a.dialog-new-window {
 }
 
 .detail .value_container {
-    display: inline-block;
+//  display: inline-block;
     max-height: 20em;
     overflow-y: auto;
     box-sizing: border-box;
@@ -194,7 +194,7 @@ a.dialog-new-window {
 }
 
 .detail .value {
-    display: inline-block;
+//  display: inline-block;
     vertical-align: top;
     padding: 0 0.7em;
     line-height: 1.8;
@@ -234,8 +234,6 @@ a.dialog-new-window {
 .detail hr {
     margin: 0.8em 4em 0.5em 0.7em;
 }
-
-
 
 .loaded-plugins {
     text-align: left;
