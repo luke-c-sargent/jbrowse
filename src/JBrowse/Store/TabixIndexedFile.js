@@ -34,7 +34,7 @@ return declare( null, {
         this.data  = new BGZBlob( args.file );
         this.indexLoaded = this.index.load();
 
-        this.chunkSizeLimit = args.chunkSizeLimit || 2000000;
+        this.chunkSizeLimit = 3000000;
     },
 
     getLines: function( ref, min, max, itemCallback, finishCallback, errorCallback ) {
